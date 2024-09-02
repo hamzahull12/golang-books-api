@@ -11,6 +11,7 @@ func main() {
 	router := gin.Default()
 
 	router.POST("/books", handlers.AddBookHandler)
+	router.GET("/books", handlers.GetBooksAllHandler)
 	router.Run(":9000")
 }
 

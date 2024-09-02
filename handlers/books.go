@@ -49,3 +49,21 @@ func AddBookHandler(ctx *gin.Context) {
 	response.Data.BookID = book.ID
 	ctx.JSON(http.StatusCreated, response)
 }
+
+func GetBooksAllHandler(ctx *gin.Context) {
+	bookSummary := []models.BookSummary{}
+
+	for _, book := range books{
+		bookSummary = append(bookSummary, models.BookSummary{
+			ID: book.ID,
+			Name: book.Name,
+			Publisher: book.Publisher,
+		})
+	}
+
+	response := models.GetAllBooksResponse{
+		Status: "success",
+	}
+	response.Data.Books = bookSummary
+	ctx.JSON(http.StatusOK, response)
+}

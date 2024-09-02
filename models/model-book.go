@@ -24,3 +24,16 @@ type CreateBookResponse struct {
 			BookID string `json:"bookId"`
 	} `json:"data"`
 }
+
+type BookSummary struct {
+	ID string `json:"id"`
+	Name      string `json:"name"`
+	Publisher string `json:"publisher"`
+}
+
+type GetAllBooksResponse struct {
+	Status string `json:"status"`
+	Data struct {
+		Books []BookSummary `json:"books"`
+	}`json:"data"`
+}
