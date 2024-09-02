@@ -12,6 +12,7 @@ func main() {
 
 	router.POST("/books", handlers.AddBookHandler)
 	router.GET("/books", handlers.GetBooksAllHandler)
+	router.GET("/books/:id", handlers.GetBookByIdHandler)
 	router.Run(":9000")
 }
 

@@ -67,3 +67,28 @@ func GetBooksAllHandler(ctx *gin.Context) {
 	response.Data.Books = bookSummary
 	ctx.JSON(http.StatusOK, response)
 }
+
+func GetBookByIdHandler(ctx *gin.Context) {
+	bookID := ctx.Param("id")
+	var foundBook *models.Book
+
+	for _, book := range books {
+		if book.ID == bookID {
+			foundBook = &book
+			break
+		}
+	}
+
+	if foundBook != nil {
+		response := models.GetBookByIdResponse{
+			Status: "success",
+		}
+		response.Data.Book = foundBook
+		ctx.JSON(http.StatusOK, response)
+	} else {
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"status":  "fail",
+			"message": "Buku tidak ditemukan",
+		})
+	}
+}

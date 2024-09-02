@@ -37,3 +37,10 @@ type GetAllBooksResponse struct {
 		Books []BookSummary `json:"books"`
 	}`json:"data"`
 }
+
+type GetBookByIdResponse struct {
+	Status string `json:"status"`
+	Data struct {
+		Book *Book `json:"book"`
+	} `json:"data"`
+}
