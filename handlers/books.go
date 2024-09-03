@@ -151,3 +151,21 @@ func EditBookByIdHandler(ctx *gin.Context) {
 		"message": "Buku berhasil diperbarui",
 	})
 }
+
+func DeleteByIdHandler(ctx *gin.Context) {
+	id := ctx.Param("id")
+	for i, book := range books{
+		if book.ID == id {
+			books = append(books[:i], books[i+1:]...)
+			ctx.JSON(http.StatusOK, gin.H{
+				"status": "success",
+				"message": "Buku berhasil dihapus",
+			})
+			return
+		}
+	}
+	ctx.JSON(http.StatusNotFound, gin.H{
+		"status": "fail",
+		"message": "Buku gagal dihapus. Id tidak ditemukan",
+	})
+}
